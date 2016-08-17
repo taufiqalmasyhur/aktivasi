@@ -5,19 +5,19 @@
 		public $LexiPalID;
 		public $Name;
 		public $Email;
-		public $OrderId;
-		public $ProductId;
+		public $OrderID;
+		public $ProductID;
 		public $DateActive;		
 		public $ActiveCode;
 						
-		public function __construct($id, $LexiPalID, $Name, $Email, $OrderId, $ProductId, $DateActive, $ActiveCode)
+		public function __construct($id, $LexiPalID, $Name, $Email, $OrderID, $ProductID, $DateActive, $ActiveCode)
 		{
-			$this->id	= $id;
+			$this->ID	= $id;
 			$this->LexiPalID = $LexiPalID;
 			$this->Name = $Name;
 			$this->Email = $Email;
-			$this->OrderId = $OrderId;
-			$this->ProductId = $ProductId;
+			$this->OrderID = $OrderID;
+			$this->ProductID = $ProductID;
 			$this->DateActive = $DateActive;
 			$this->ActiveCode = $ActiveCode;		
 		}
@@ -31,12 +31,12 @@
 			foreach ($req -> fetchAll() as $post) 
 			{
 				$list[] = new Post(
-					$post['id'], 
+					$post['ID'], 
 					$post['LexiPalID'], 
 					$post['Name'],
 					$post['Email'],
-					$post['OrderId'],
-					$post['ProductId'],
+					$post['OrderID'],
+					$post['ProductID'],
 					$post['DateActive'],
 					$post['ActiveCode']
 				);			
@@ -48,17 +48,17 @@
 		{
 			$db = Db::getInstance();
 			$id = intval($id);
-			$req = $db->prepare('SELECT * FROM userdatas WHERE id = :id');
-			$req = exec(array('id'=>$id));
+			$req = $db->prepare('SELECT * FROM userdatas WHERE ID = :id');
+			$req->execute(array('id' => $id));
 			$post = $req->fetch();
 			
 			return new Post(
-				$post['id'], 
+				$post['ID'], 
 				$post['LexiPalID'], 
 				$post['Name'],
 				$post['Email'],
-				$post['OrderId'],
-				$post['ProductId'],
+				$post['OrderID'],
+				$post['ProductID'],
 				$post['DateActive'],
 				$post['ActiveCode']
 			);
